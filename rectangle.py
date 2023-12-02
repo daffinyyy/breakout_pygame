@@ -5,9 +5,9 @@ import numpy
 class Rectangle():
     def __init__(self, asset, orientation, width, height, pos_x, pos_y, speed):
         self.game_object = pygame.image.load(asset)
-        if orientation in ["horizontal","h","hor"]:  
+        if orientation in ["horizontal", "h", "hor"]:
             self.game_object = pygame.transform.rotate(self.game_object, 90)
-        self.game_object = pygame.transform.scale(self.game_object, (width,height))
+        self.game_object = pygame.transform.scale(self.game_object, (width, height))
         self.x = pos_x
         self.y = pos_y
         self.exist = True
@@ -51,9 +51,9 @@ class Ball(Rectangle):
         self.angle = angle
 
     def move(self, limit_left, limit_right, limit_up, limit_down):
-        self.x = self.x + math.cos(math.radians(self.angle)) * (self.speed)
-        self.y = self.y - math.sin(math.radians(self.angle)) * (self.speed)
-        
+        self.x = self.x + math.cos(math.radians(self.angle)) * self.speed
+        self.y = self.y - math.sin(math.radians(self.angle)) * self.speed
+
         if self.x <= limit_left:
             self.x = limit_left
             self.turn(-90 * numpy.sign(self.angle))
@@ -76,3 +76,4 @@ class Ball(Rectangle):
             self.angle -= 360
         if self.angle < -180:
             self.angle += 360
+            
